@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<fieldset>
+<!DOCTYPE html>
+<html>
+  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a href="{{url_for('home')}}" onclick="">
+        <span class="glyphicon glyphicon-home"></span>
+        </a>
+  <head>
+    <meta charset="utf-8">
+    <div style="padding-left: 1cm !important;">
+    <h3> Form CSRF 🐬 </h3>
+    </div>
+  </head>
+  <a href="{{url_for('logout')}}" style="padding-inline-end: 1cm !important;">
+    <button class="btn btn-secondary my-2 my-sm-0" >Logout</button>
+    </a>
+  </div>
+</div>
+</nav>
+</br>
+
+  <body>
+
+<form action="/form" method="post">
+   <!-- csrf protection -->
+   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" id="csrf_token"/>
+
+   <div class="form-group">
+        <label for="staticName" class="form-label mt-4">First name:</label>
+        <input type="text" name="fname" placeholder="Name" class="form-control">
+      </div>
+      <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+
+        <div class="form-group">
+        
+        <label for="exampleInputPassword1" class="form-label mt-4">Last name: </label>
+        <input type="text" class="form-control" name="lname" placeholder="Last Name">
+        <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
+
+
+      </div>
+        <br>
+ 
+        <input type="submit" class="btn btn-outline-secondary" value="Submit">
+</form>
+
+<script type="text/javascript">
+    console.log(document.getElementById('csrf_token').value)
+</script>
+
+</body>
+</html>
+</fieldset>
+{% endblock %}

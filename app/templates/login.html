@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<fieldset>
+<!DOCTYPE html>
+<html>
+  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+  <head>
+    <meta charset="utf-8">
+    <h3> LOGIN 🦊 </h3>
+  </head>
+  </div>
+</div>
+</nav>
+</br>
+
+  <body>
+   <div style="text-align:center;">
+    <form action = "{{url_for('login')}}" method="post">
+
+         	<label for="username">
+         	<i class="fas fa-user"></i>
+        	</label>
+
+        	<input class="form-control is-invalid" type="text" name="username" placeholder="Username" id="username" required style="text-align:center !important" >
+
+         	<label for="password">
+        	<i class="fas fa-lock"></i>
+         	</label>
+         			
+          <input class="form-control is-invalid" type="password" name="password" placeholder="Password" id="password" required style="text-align:center !important;">
+           
+          <br>
+         	
+          <input class="btn btn-outline-secondary" type="submit" value="Login" onclick="this.disabled=true;this.value='Loading...';this.form.submit();">
+
+          <div class="invalid-feedback">{{ msg }}</div>
+
+
+          <!-- style="width: 300px !important" -->
+    </form>
+    <br>
+    <a href="{{ url_for('register') }}">Don't have an account? Register</a>
+   </div>
+
+</body>
+</html>
+</fieldset>
+{% endblock %}

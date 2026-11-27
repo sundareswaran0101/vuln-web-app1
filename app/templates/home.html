@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<fieldset>
+<!DOCTYPE html>
+<html>
+  <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <div class="container-fluid">
+      <a href="{{url_for('home')}}" onclick="">
+      <span class="glyphicon glyphicon-home"></span>
+      </a>
+  <head>
+    <meta charset="utf-8">
+    <div style="padding-left: 1cm !important;">
+    <h3> Home 🏠 </h3>
+  </div>
+  
+    <div class="nav navbar-right" style="padding-inline-end: 1cm !important;">
+        <a href="{{url_for('logout')}}">
+        <button class="btn btn-secondary my-2 my-sm-0" >Logout</button>
+        </a>
+    </div>
+  </head>
+  </div>
+  
+</div>
+</nav>
+</br>
+
+  <body>
+
+    <br>
+    <div style="padding-left: 3cm;">
+        <!-- <h2>Welcome back, {{ session }} !</h2> -->
+        <h2>Welcome back, {{ request.args.get('user', '') }} !</h2>
+    </div>
+        <br>
+        <br>
+        <div style="text-align:center;">
+        <img src={{url_for('static', filename='hacker-man.jpg')}} style="width:500px;height:650;" />
+
+        <br>
+        <br>
+        <a href="{{url_for('index',farenheit='farenheit')}}">
+          <button type="button" class="btn btn-outline-warning" style="margin:5px;"> Temperature </button>
+        </a>
+          <a href="{{url_for('run',script='script')}}">
+            <button type="button" class="btn btn-outline-success" style="margin:5px;"> Script </button>
+        </a>
+        <a href="{{url_for('upload_file')}}">
+            <button type="button" class="btn btn-outline-primary" style="margin:5px;"> Upload </button>
+        </a>
+        <a href="{{url_for('blog')}}">
+            <button type="button" class="btn btn-outline-secondary" style="margin:5px;"> Blog </button>
+        </a>
+        <a href="{{url_for('form')}}">
+            <button type="button" class="btn btn-outline-light" style="margin:5px;"> Form </button>
+        </a>
+
+        <a href="{{url_for('people_list')}}">
+          <button type="button" class="btn btn-outline-danger" style="margin:5px;"> P. Info </button>
+      </a>
+        {% if user_id %}
+        <a href="{{url_for('profile', user_id=user_id)}}">
+          <button type="button" class="btn btn-outline-info" style="margin:5px;"> My Profile </button>
+        </a>
+        {% endif %}
+        <a href="{{url_for('ssrf')}}">
+          <button type="button" class="btn btn-outline-warning" style="margin:5px;"> SSRF </button>
+        </a>
+        <a href="/apidocs/">
+            <button type="button" class="btn btn-outline-dark" style="margin:5px;"> Swagger </button>
+        </a>
+        </div>
+
+
+</body>
+</html>
+</fieldset>
+{% endblock %}
