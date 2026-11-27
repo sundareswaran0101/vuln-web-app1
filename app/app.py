@@ -1,5 +1,5 @@
 
-from flask import Flask, request, redirect, url_for, session,render_template,escape,send_from_directory
+from flask import Flask, request, redirect, url_for, session,render_template,escape,send_from_directory, abort
 from flask_mysqldb import MySQL
 # from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
@@ -319,9 +319,18 @@ def page():
     """
 
 
-    cmd = request.args.get("cmd")
+    cmd = request.args.get("cmd", "")
+    allowed_commands = {
+        "date": ["date"],
+        "whoami": ["whoami"],
+        "uptime": ["uptime"]
+    }
 
-    return subprocess.check_output(cmd, shell=True)
+    command_to_run = allowed_commands.get(cmd)
+    if command_to_run is None:
+        abort(400, description="Invalid command")
+
+    return subprocess.check_output(command_to_run, text=True)
     # command_to_be_executed = ['cat', '/']
     # return subprocess.check_output(command_to_be_executed, shell=True)
 
